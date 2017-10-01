@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row" ng-controller="TextEditorController">
+    <div id="texto" class="col-md-6 col-md-offset-3" ng-class="{'resultado-vazio' :!texto, 'resultado' :texto}">
+        <div ng-if="!texto">Resultado parcial</div>
+        <div>{{texto}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <textarea class="form-control" rows="2" ng-model="texto"></textarea>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-5">
+                        <button class="btn" ng-click="text_align('left')">left</button>
+                        <button class="btn" ng-click="text_align('center')">center</button>
+                        <button class="btn" ng-click="text_align('right')">right</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn" ng-click="text_color()">color</button>
+                        <input id="color" type="color" name="color" ng-model="color" style="display: none;" ng-change="ChangeColor()" value="#8A8A8A" />
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-control"
+                                ng-model="singleSelect"
+                                ng-change="fontFamilyChange()">
+                            <option value="" selected="selected">Selecione uma Fonte</option>
+                            <option ng-repeat="font in fonts" style="font-family: {{font.family}}">{{font.family}}</option>
+                        </select>
+                    </div>
+                </div>
+                <hr
+            </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block" ng-click="saveText()">Salvar</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-warning btn-block" ng-click="limpar()">Limpar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row"  ng-repeat="result in resultSaved" style="margin-top: 15px">
+        <div class="col-md-6 col-md-offset-3 resultado" style="text-align: {{result.style['text-align']}}; color: {{result.style['color']}}; border-color: {{result.style['color']}}">
+            {{result.text}}
+        </div>
+    </div>
+</div>
