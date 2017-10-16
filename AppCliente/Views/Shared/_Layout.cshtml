@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <base href="/">
+</head>
+<body ng-init="app">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>Configuracao
+                @Html.ActionLink("Gestor de Configurações", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a ng-href="/consumir">Consumir</a></li>
+                    <li ><a ng-href="/Configuracoes">Configuração</a></li>
+                    <li ><a ng-href="/Usuarios">Usuários</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Hello Sapiensia Desenvolvido por Marcelo Rocha ®</p>
+        </footer>
+    </div>
+
+
+    <div id="myOverlay">
+        <div id="loader"></div>
+
+    </div>
+
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<!--Application Js configs files-->
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/angular-resource.min.js"></script>
+<script src="~/Scripts/angular-loader.min.js"></script>
+<script src="~/Scripts/angular-sanitize.min.js"></script>
+<script src="~/Scripts//angular-animate.min.js"></script>
+<script src="~/Scripts/angular-route.min.js"></script>
+<script src="~/Scripts/angular-ngStorage.js"></script>
+<script src="~/Scripts/angular-md5.js"></script>
+
+
+<script src="~/app/common/config/app.js"></script>
+<script src="~/app/common/config/config.route.js"></script>
+<script src="~/app/common/globals/storageService.js"></script>
+<script src="~/app/common/globals/authService.js"></script>
+<script src="~/app/common/globals/authInterceptorService.js"></script>
+
+<!-- Globals components -->
+<script src="~/app/common/globals/loadAnimeService.js"></script>
+<script src="~/app/common/globals/locationhostService.js"></script>
+<script src="~/app/common/globals/messageService.js"></script>
+
+<!-- Bower components -->
+<script src="~/bower_components/bootstrap3-dialog/src/js/bootstrap-dialog.js"></script>
+<script src="~/bower_components/ng-cpf-cnpj-validate/validate-cpf-directive.js"></script>
+<script src="~/bower_components/ng-cpf-cnpj-validate/validate-cnpj-directive.js"></script>
+<script src="~/bower_components/angular-ui-mask/dist/mask.min.js"></script>
+
+<!-- AngularJS Directives -->
+<script src="~/app/common/directives/directives.js"></script>
+
+<!-- angular Services order by vs order-->
+<script src="~/app/services/configuracaoService.js"></script>
+<script src="~/app/services/perfilService.js"></script>
+<script src="~/app/services/usuarioService.js"></script>
+
+
+<!-- AngularJS Controllers -->
+<script src="~/app/controller/ConfiguracaoCtrl.js"></script>
+<script src="~/app/controller/PerfilCtrl.js"></script>
+<script src="~/app/controller/UsuarioCtrl.js"></script>
+<script src="~/app/controller/LoginCtrl.js"></script>
+
+

@@ -1,0 +1,88 @@
+﻿<style>
+    .required {
+        color: red;
+    }
+</style>
+
+
+<section ng-controller="ConfiguracaoCtrl as vmConfiguracao">
+
+
+    <section class="panel panel-body" ng-show="vmConfiguracao.tela==='Consulta'">
+        <header class="panel panel-heading">
+            <h3 class="col-xs-9 col-md-9">
+                Configurações
+            </h3>
+            <section class="pull-right col-xs-3 col-md-3">
+                <button class="btn btn-primary" ng-click="vmConfiguracao.loadGrid();"><i class="glyphicon glyphicon-refresh"> Atualizar</i></button>
+
+                <button class="btn btn-primary" ng-click="vmConfiguracao.goCadastro();"><i class="glyphicon glyphicon-file"> Novo</i></button>
+            </section>
+        </header>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Perfil</th>                  
+                    <th colspan="2">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr ng-repeat="Configuracao in vmConfiguracao.bagConfiguracao | orderBy:'nome' ">
+                    <td>{{Configuracao.nome}}</td>                  
+                    <td>{{Configuracao.valor}}</td>
+                    <td>{{Configuracao.perfilNome}}</td>
+                    <td style="cursor:pointer"><i class="glyphicon glyphicon-edit" ng-click="vmConfiguracao.goEditar(Configuracao);" title="Editar"></i></td>
+                    <td style="cursor:pointer"><i class="glyphicon glyphicon-remove" ng-click="vmConfiguracao.goDeletar(Configuracao.codigo);" title="Deletar"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel-body" ng-show="vmConfiguracao.tela==='Cadastro'">
+        <header class="panel panel-heading">
+            <h3 class="col-xs-9 col-md-9">
+                Cadastro de Configuracaoes
+            </h3>
+        </header>
+        <form name="configuracaoForm" novalidate>
+            <div class="form-group">
+
+                <div class="col-xs-6 col-sm-6 col-md-6" ng-class="{'has-error': configuracaoForm.nome.$touched && configuracaoForm.nome.$invalid }">
+                    <label class="control-label">Nome <i class="required">*</i></label>
+                    <input type="text" class="form-control" name="nome" ng-model="vmConfiguracao.user.nome"
+                           placeholder="Nome do usuário" maxlength="200" required />
+                </div>
+                <div class="col-xs-6  col-sm-6 col-md-6">
+                    <div class="col-xs-4 col-md-6" ng-class="{'has-error': configuracaoForm.valor.$touched && configuracaoForm.valor.$invalid }">
+                        <label class="control-label">valor <i class="required">*</i></label>
+                        <input type="text" class="form-control" name="valor" ng-model="vmConfiguracao.user.valor"
+                               placeholder="Nome do usuário" maxlength="200" required />
+                    </div>
+                   
+                    <div class="col-xs-6 col-sm-6 col-md-6" ng-class="{'has-error': configuracaoForm.Perfil.$touched && configuracaoForm.Perfil.$invalid }">
+
+                        <label class="control-label">Perfil <i class="required">*</i></label>
+                        <select class="form-control" name="Perfil" ng-model="vmConfiguracao.user.perfil" 
+                             ng-options="p.nome for p in vmConfiguracao.bagPerfils | orderBy: 'nome'  track by p.codigo" required>
+                            <option value="">--- Selecione ---</option> <!-- not selected / blank option -->
+                        </select>                       
+                    </div>
+                   
+                </div>              
+        </form>
+      
+
+    </section>
+
+    <footer class="text-right panel panel-footer" ng-show="vmConfiguracao.tela==='Cadastro'">
+        <button class="btn btn-primary" ng-click="vmConfiguracao.goSaveOrUpdate();" ng-disabled="configuracaoForm.$invalid"><i class="glyphicon glyphicon glyphicon-floppy-disk"> Salvar</i></button>
+        <button class="btn btn-default" ng-click="vmConfiguracao.goConsulta();"><i class="glyphicon glyphicon glyphicon-menu-left"> Voltar</i></button>
+    </footer>
+   
+</section>
+
+
+
