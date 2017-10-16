@@ -1,0 +1,110 @@
+﻿<style>
+    .required {
+        color: red;
+    }
+</style>
+
+
+<section ng-controller="UsuarioCtrl as vmUsuario">
+
+
+    <section class="panel panel-body" ng-show="vmUsuario.tela==='Consulta'">
+        <header class="panel panel-heading">
+            <h3 class="col-xs-9 col-md-9">
+                Usuários
+            </h3>
+            <section class="pull-right col-xs-3 col-md-3">
+                <button class="btn btn-primary" ng-click="vmUsuario.loadGrid();"><i class="glyphicon glyphicon-refresh"> Atualizar</i></button>
+
+                <button class="btn btn-primary" ng-click="vmUsuario.goCadastro();"><i class="glyphicon glyphicon-file"> Novo</i></button>
+            </section>
+        </header>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Perfil</th>                  
+                    <th colspan="2">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr ng-repeat="usuario in vmUsuario.bagusuarios | orderBy:'nome' ">
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.login}}</td>
+                    <td>{{usuario.perfilNome}}</td>
+                    <td style="cursor:pointer"><i class="glyphicon glyphicon-edit" ng-click="vmUsuario.goEditar(usuario);" title="Editar"></i></td>
+                    <td style="cursor:pointer"><i class="glyphicon glyphicon-remove" ng-click="vmUsuario.goDeletar(usuario.codigo);" title="Deletar"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel-body" ng-show="vmUsuario.tela==='Cadastro'">
+        <header class="panel panel-heading">
+            <h3 class="col-xs-9 col-md-9">
+                Cadastro de usúarios
+            </h3>
+        </header>
+        <form name="usuarioForm" novalidate>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="col-xs-4 col-sm-4 col-md-4" ng-class="{'has-error': usuarioForm.nome.$touched && usuarioForm.nome.$invalid }">
+                        <label class="control-label">Nome <i class="required">*</i></label>
+                        <input type="text" class="form-control" name="nome" ng-model="vmUsuario.user.nome"
+                               placeholder="Nome do usuário" maxlength="200" required />
+                    </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4" ng-class="{'has-error': usuarioForm.login.$touched && usuarioForm.login.$invalid }">
+                        <label class="control-label">Login <i class="required">*</i></label>
+                        <input type="text" class="form-control" name="login" ng-model="vmUsuario.user.login"
+                               maxlength="15" size="120" placeholder="digite o login" />
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4" ng-class="{'has-error': usuarioForm.Perfil.$touched && usuarioForm.Perfil.$invalid }">
+
+                        <label class="control-label">Perfil <i class="required">*</i></label>
+                        <select class="form-control" name="Perfil" ng-model="vmUsuario.user.perfil"
+                                 ng-options="p.nome for p in vmUsuario.bagPerfils | orderBy: 'nome' track by p.codigo  "                                 
+                              required>
+                            <option value="">--- Selecione ---</option> <!-- not selected / blank option -->
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+
+                  
+                    <div class="col-xs-4 col-md-4" ng-class="[{'has-error': usuarioForm.senha.$touched && usuarioForm.senha.$invalid 
+                         || vmUsuario.user.senha!==vmUsuario.user.ConfirmaSenha && usuarioForm.senha.$touched},{'has-success': vmUsuario.user.senha===vmUsuario.user.ConfirmaSenha && usuarioForm.senha.$valid }]">
+                        <label class="control-label">Senha <i class="required">*</i></label>
+                        <input type="password" class="form-control" name="senha" ng-model="vmUsuario.user.senha"
+                               maxlength="15" size="120" placeholder="digite a senha" required 
+                               ng-class="{'form-control-success': vmUsuario.user.senha===vmUsuario.user.ConfirmaSenha && usuarioForm.senha.$touched }"/>
+                    </div>
+                    <div class="col-xs-4 col-md-4" ng-class="[{'has-error': usuarioForm.confirmaSenha.$touched && usuarioForm.confirmaSenha.$invalid 
+                         || vmUsuario.user.senha!==vmUsuario.user.ConfirmaSenha && usuarioForm.senha.$touched},{'has-success': vmUsuario.user.senha===vmUsuario.user.ConfirmaSenha && usuarioForm.confirmaSenha.$valid }]">
+                        <label class="control-label">Confirme a Senha <i class="required">*</i></label>
+                        <input type="password" class="form-control" name="confirmaSenha" ng-model="vmUsuario.user.ConfirmaSenha"
+                               maxlength="15" size="120" placeholder="digite novamente sua senha" required
+                               ng-class="{'form-control-success': vmUsuario.user.senha===vmUsuario.user.ConfirmaSenha && usuarioForm.confirmaSenha.$touched }"/>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </form>
+
+
+    </section>
+
+    <footer class="text-right panel panel-footer" ng-show="vmUsuario.tela==='Cadastro'">
+        <button class="btn btn-primary" ng-click="vmUsuario.goSaveOrUpdate();" ng-disabled="usuarioForm.$invalid || vmUsuario.user.senha!==vmUsuario.user.ConfirmaSenha"><i class="glyphicon glyphicon glyphicon-floppy-disk"> Salvar</i></button>
+        <button class="btn btn-default" ng-click="vmUsuario.goConsulta();"><i class="glyphicon glyphicon glyphicon-menu-left"> Voltar</i></button>
+    </footer>
+
+</section>
+
+
+

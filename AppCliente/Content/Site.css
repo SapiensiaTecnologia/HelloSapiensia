@@ -1,0 +1,98 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+
+/* This is overlay used only for loader class*/
+.loader-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    z-index: 99999;
+    top: 0;
+    overflow-x: hidden;
+    opacity: 0.5;
+}
+/* ------------------------------------------------------------ Center the loader */
+#loader {
+    visibility: inherit;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    z-index: 10000;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* ------------------------------------------------------------ Overlay the loader */
+#myOverlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: black;
+    visibility: hidden;
+    opacity: 0.5;
+}
+
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.square {
+    display: inline-block;
+    margin-left: 0;
+    width: 80%;
+    padding-bottom: 0%; /* = width for a 1:1 aspect ratio */
+    overflow: hidden;    
+}
+
+.content-square {
+    position: relative;
+    height: 30%; /* = 100% - 2*10% padding */
+    width: 90%; /* = 100% - 2*5% padding */
+    padding: 10%;
+}

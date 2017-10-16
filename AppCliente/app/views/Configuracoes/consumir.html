@@ -1,0 +1,43 @@
+﻿<style>
+    .required {
+        color: red;
+    }
+
+   
+</style>
+
+
+<section ng-controller="ConfiguracaoCtrl as vmConfiguracao">
+
+
+    <section class="panel panel-body">
+        <header class="panel panel-heading">
+            <h3 class="col-xs-9 col-md-9">
+                Consumo de  Configurações
+            </h3>
+            <section class="pull-right col-xs-3 col-md-3">
+                <button class="btn btn-primary" ng-click="vmConfiguracao.loadGrid();"><i class="glyphicon glyphicon-refresh"> Atualizar</i></button>
+
+            </section>
+        </header>
+        <article class="panel-body" ng-init="">
+            <div class="col-xs-6 col-sm-6 col-md-6" >
+                <label class="control-label">Codigo da configuração <i class="required">*</i></label>
+                <input type="number" class="form-control" name="nome" ng-model="vmConfiguracao.codigoConsumida"
+                       ng-change="vmConfiguracao.getConfigConsumida(vmConfiguracao.codigoConsumida)"
+                       placeholder="código da configuração" maxlength="200" required />
+            </div>
+            <div class="square" ng-style="{'background-color':vmConfiguracao.configConsumida.valor}">
+                <div class="content-square" >
+                    <h2 class="alert-success text-center">Consumindo a configuração {{vmConfiguracao.configConsumida.nome}} de valor {{vmConfiguracao.configConsumida.valor}}</h2>
+                 
+                </div>
+            </div>
+        </article>
+    </section>
+
+
+</section>
+
+
+

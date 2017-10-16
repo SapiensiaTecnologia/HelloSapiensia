@@ -1,17 +1,22 @@
-# HelloSapiensia
-Definição de um problema para analise de código
 
-A Sapiensia Tecnologia busca profissionais especializados para o desenvolvimento de aplicações Web e Mobile na Plataforma Microsoft .Net.
+# GestorConfiguracao 
+#Developed By Marcelo do Nascimento ®
+Aplicação de teste OAuth
+Foram realizados os itens de 1 até 5, devido a uma falha no computador não foi possível realizar a app em Ionic3
 
-Gostariamos de analisar seu conhecimento nessa plataforma de desenvolvimento com um desafio de código. Leia atentamente a definição de requisitos abaixo e nos envie um pull request com a sua implementação de solução para o problema.
-
-Requisitos:
-
-1. A Aplicação, chamada de Gerenciador De Configuracao,  deverá utilizar as seguintes tecnologias: C#, ASP.NET WebApi, Angular, Microsoft SQL Server, OAUTH
-2. O Gerenciador De Configuracao deverá ser capaz de armazenar configurações para uma aplicação web, denominada Aplicação Cliente.
-3. As configurações poderão ser editadas por usuários com acesso ao Gerenciador De Configuracao.
-4. Deverá existir uma forma de configurar os usuários que tem permissão para acessar o Gerenciador De Configuracao.
-5. A Aplicação cliente deverá ser capaz de consumir as configurações armazenadas utilizando chamadas à API do Gerenciador De Configuracao.
-6. Como bônus, seria interessante o desenvolvimento de um front end mobile, utilizando o framework IONIC 3, para gerenciamento das configurações.
-
-Boa Sorte!
+ ## Orientações de implantação do software:
+ <p>Passo 1:
+ Executar os script.sql na pasta raiz da solução em um sqlserver 2016 ou 2017</p>
+ <p> Passo 2:
+ verificar a conection string usuário e senha do seu banco seu conferem com os dados presentes no webconfig.xml</p>
+  <p>Passo 3:
+ Realizar os Insert abaixo na table Perfil:</p>
+  <p>Ex.: 
+ INSERT INTO [Perfil](nome) VALUES('Admin');</p>
+ <p> INSERT INTO [Perfil](nome) VALUES('Consultor');</p>
+ <p> Passo 4:
+ Criar um usuário Perfil 'Admin' passando o id do perfil 'Admin' gerado pela PK no passo 3, para acesso ao sistema na table de usuários:</p>
+ <p> Ex.: INSERT Usuarios into ('Godofredo','Godo',1,'123')</p>
+  <p>Passo 6:
+  Realizar o login no sistema com o usuário e senha cadastrados e incluir os usuários e configurações desejados, lembrando que somente  <p>usuários Admin, poderão</p>
+ 

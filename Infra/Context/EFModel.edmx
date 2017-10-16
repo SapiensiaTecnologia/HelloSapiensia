@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="modelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configuracao">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+          <Property Name="valor" Type="nvarchar" MaxLength="50" />
+          <Property Name="perfil_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+          <Property Name="nickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="perfil_id" Type="int" />
+          <Property Name="senha" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Perfil_Conf">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Configuracao" Type="Self.Configuracao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Configuracao">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_perfil_users">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="modelModelStoreContainer">
+          <EntitySet Name="Configuracao" EntityType="Self.Configuracao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Perfil_Conf" Association="Self.FK_Perfil_Conf">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Configuracao" EntitySet="Configuracao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_perfil_users" Association="Self.FK_perfil_users">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="modelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="modelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Perfils" EntityType="modelModel.Perfil" />
+          <EntitySet Name="Configuracaos" EntityType="modelModel.Configuracao" />
+          <AssociationSet Name="FK_Perfil_Conf" Association="modelModel.FK_Perfil_Conf">
+            <End Role="Perfil" EntitySet="Perfils" />
+            <End Role="Configuracao" EntitySet="Configuracaos" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="modelModel.Usuario" />
+          <AssociationSet Name="FK_perfil_users" Association="modelModel.FK_perfil_users">
+            <End Role="Perfil" EntitySet="Perfils" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Configuracaos" Relationship="modelModel.FK_Perfil_Conf" FromRole="Perfil" ToRole="Configuracao" />
+          <NavigationProperty Name="Usuarios" Relationship="modelModel.FK_perfil_users" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Configuracao">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="valor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="perfil_id" Type="Int32" />
+          <NavigationProperty Name="Perfil" Relationship="modelModel.FK_Perfil_Conf" FromRole="Configuracao" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK_Perfil_Conf">
+          <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
+          <End Type="modelModel.Configuracao" Role="Configuracao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Configuracao">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="nickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="perfil_id" Type="Int32" />
+          <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Perfil" Relationship="modelModel.FK_perfil_users" FromRole="Usuario" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK_perfil_users">
+          <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
+          <End Type="modelModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="modelModelStoreContainer" CdmEntityContainer="modelEntities">
+          <EntitySetMapping Name="Perfils">
+            <EntityTypeMapping TypeName="modelModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuracaos">
+            <EntityTypeMapping TypeName="modelModel.Configuracao">
+              <MappingFragment StoreEntitySet="Configuracao">
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="modelModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
