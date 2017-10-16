@@ -23,8 +23,9 @@
         <article class="panel-body" ng-init="">
             <div class="col-xs-6 col-sm-6 col-md-6" >
                 <label class="control-label">Codigo da configuração <i class="required">*</i></label>
-                <input type="number" class="form-control" name="nome" ng-model="vmConfiguracao.codigoConsumida" ng-change="vmConfiguracao.getConfigConsumida(vmConfiguracao.codigoConsumida)"
-                       placeholder="Nome do usuário" maxlength="200" required />
+                <input type="number" class="form-control" name="nome" ng-model="vmConfiguracao.codigoConsumida"
+                       ng-change="vmConfiguracao.getConfigConsumida(vmConfiguracao.codigoConsumida)"
+                       placeholder="código da configuração" maxlength="200" required />
             </div>
             <div class="square" ng-style="{'background-color':vmConfiguracao.configConsumida.valor}">
                 <div class="content-square" >
