@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="modelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="modelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Perfils" EntityType="modelModel.Perfil" />
+    <EntitySet Name="Configuracaos" EntityType="modelModel.Configuracao" />
+    <AssociationSet Name="FK_Perfil_Conf" Association="modelModel.FK_Perfil_Conf">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="Configuracao" EntitySet="Configuracaos" />
+    </AssociationSet>
+    <EntitySet Name="Usuarios" EntityType="modelModel.Usuario" />
+    <AssociationSet Name="FK_perfil_users" Association="modelModel.FK_perfil_users">
+      <End Role="Perfil" EntitySet="Perfils" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Configuracaos" Relationship="modelModel.FK_Perfil_Conf" FromRole="Perfil" ToRole="Configuracao" />
+    <NavigationProperty Name="Usuarios" Relationship="modelModel.FK_perfil_users" FromRole="Perfil" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Configuracao">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="valor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="perfil_id" Type="Int32" />
+    <NavigationProperty Name="Perfil" Relationship="modelModel.FK_Perfil_Conf" FromRole="Configuracao" ToRole="Perfil" />
+  </EntityType>
+  <Association Name="FK_Perfil_Conf">
+    <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
+    <End Type="modelModel.Configuracao" Role="Configuracao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="codigo" />
+      </Principal>
+      <Dependent Role="Configuracao">
+        <PropertyRef Name="perfil_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="nickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="perfil_id" Type="Int32" />
+    <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Perfil" Relationship="modelModel.FK_perfil_users" FromRole="Usuario" ToRole="Perfil" />
+  </EntityType>
+  <Association Name="FK_perfil_users">
+    <End Type="modelModel.Perfil" Role="Perfil" Multiplicity="0..1" />
+    <End Type="modelModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfil">
+        <PropertyRef Name="codigo" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="perfil_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

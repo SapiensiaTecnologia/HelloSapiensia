@@ -1,0 +1,17 @@
+C:\Users\OK\source\repos\Projeto1\DTO\bin\Debug\DTO.dll
+C:\Users\OK\source\repos\Projeto1\DTO\bin\Debug\DTO.pdb
+C:\Users\OK\source\repos\Projeto1\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\OK\source\repos\Projeto1\DTO\obj\Debug\DTO.dll
+C:\Users\OK\source\repos\Projeto1\DTO\obj\Debug\DTO.pdb
+C:\Users\OK\source\repos\Projeto1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\OK\source\repos\Client-SPA\DTO\bin\Debug\DTO.dll
+C:\Users\OK\source\repos\Client-SPA\DTO\bin\Debug\DTO.pdb
+C:\Users\OK\source\repos\Client-SPA\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\OK\source\repos\Client-SPA\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\OK\source\repos\Client-SPA\DTO\obj\Debug\DTO.dll
+C:\Users\OK\source\repos\Client-SPA\DTO\obj\Debug\DTO.pdb
+C:\Users\OK\source\repos\GestorConfiguracao\DTO\bin\Debug\DTO.dll
+C:\Users\OK\source\repos\GestorConfiguracao\DTO\bin\Debug\DTO.pdb
+C:\Users\OK\source\repos\GestorConfiguracao\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\OK\source\repos\GestorConfiguracao\DTO\obj\Debug\DTO.dll
+C:\Users\OK\source\repos\GestorConfiguracao\DTO\obj\Debug\DTO.pdb
