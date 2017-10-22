@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list inset>
+    <ion-item *ngFor="let user of users">
+      <h2>{{user.nome}}</h2>
+      <p>Endereço: {{user.endereco}} </p> 
+          <p>telefone: {{user.telefone}} </p> 
+              <p>email: {{user.email}}</p>      
+    </ion-item>
+  </ion-list>
+</ion-content>

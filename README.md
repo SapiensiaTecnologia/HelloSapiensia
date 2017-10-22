@@ -1,17 +1,21 @@
-# HelloSapiensia
-Definição de um problema para analise de código
+# Gerenciador de Configuracao
+Aqui se encontra o projeto de Felipe Cardozo para empresa Sapiensia
 
-A Sapiensia Tecnologia busca profissionais especializados para o desenvolvimento de aplicações Web e Mobile na Plataforma Microsoft .Net.
+Esse projeto possui as seguintes tecnologias:
 
-Gostariamos de analisar seu conhecimento nessa plataforma de desenvolvimento com um desafio de código. Leia atentamente a definição de requisitos abaixo e nos envie um pull request com a sua implementação de solução para o problema.
+C#,
+ASP.NET WebApi,
+Angular,
+Microsoft SQL Server,
+Ionic
 
-Requisitos:
-
-1. A Aplicação, chamada de Gerenciador De Configuracao,  deverá utilizar as seguintes tecnologias: C#, ASP.NET WebApi, Angular, Microsoft SQL Server, OAUTH
-2. O Gerenciador De Configuracao deverá ser capaz de armazenar configurações para uma aplicação web, denominada Aplicação Cliente.
-3. As configurações poderão ser editadas por usuários com acesso ao Gerenciador De Configuracao.
-4. Deverá existir uma forma de configurar os usuários que tem permissão para acessar o Gerenciador De Configuracao.
-5. A Aplicação cliente deverá ser capaz de consumir as configurações armazenadas utilizando chamadas à API do Gerenciador De Configuracao.
-6. Como bônus, seria interessante o desenvolvimento de um front end mobile, utilizando o framework IONIC 3, para gerenciamento das configurações.
-
-Boa Sorte!
+## Para executar a aplicação antes de abri-la no Visual Studio execute esses comandos no Console de Gerenciamento de Pacote:
+```
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
+Add-Migration Initial
+Update-Database
+```
+### Para executar a aplicação IONIC execute esse comando Terminal:
+```
+ionic serve --lab
+```
